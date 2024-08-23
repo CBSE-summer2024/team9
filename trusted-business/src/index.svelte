@@ -1,1 +1,1 @@
-<h1> Hello from Svelte</h1>
+<h1 class="text-red-500"> Hello from Svelte</h1>
