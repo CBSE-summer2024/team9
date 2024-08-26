@@ -1,33 +1,33 @@
 <template>
   <div
-    class="relative overflow-hidden w-full"
+    class="ps-relative ps-overflow-hidden ps-w-full"
     @mouseover="pauseAutoScroll"
     @mouseleave="startAutoScroll"
   >
     <div
-      class="flex transition-transform duration-500 ease-in-out"
+      class="ps-flex ps-transition-transform ps-duration-500 ps-ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
     >
       <div
         v-for="(product, index) in products"
         :key="index"
-        class="min-w-full flex justify-center items-center"
+        class="ps-min-w-full ps-flex ps-justify-center ps-items-center"
       >
-        <div class="text-center p-4">
+        <div class="ps-text-center ps-p-4">
           <img
             :src="product.image"
             :alt="product.name"
             width="200"
-            class="w-48 mx-auto mb-4 rounded-md object-cover"
+            class="ps-w-48 ps-mx-auto ps-mb-4 ps-rounded-md ps-object-cover"
           />
-          <p class="text-lg font-semibold pb-3">{{ product.name }}</p>
+          <p class="ps-text-lg ps-font-semibold ps-pb-3">{{ product.name }}</p>
         </div>
       </div>
     </div>
 
     <button
       @click="prevSlide"
-      class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 m-2 hover:bg-gray-700 focus:outline-none"
+      class="ps-absolute ps-top-1/2 ps-left-0 ps-transform ps--translate-y-1/2 ps-bg-gray-800 ps-text-white ps-rounded-full ps-p-2 ps-m-2 hover:ps-bg-gray-700 focus:ps-outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        class="w-6 h-6"
+        class="ps-w-6 ps-h-6"
       >
         <path
           stroke-linecap="round"
@@ -47,7 +47,7 @@
 
     <button
       @click="nextSlide"
-      class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 m-2 hover:bg-gray-700 focus:outline-none"
+      class="ps-absolute ps-top-1/2 ps-right-0 ps-transform ps--translate-y-1/2 ps-bg-gray-800 ps-text-white ps-rounded-full ps-p-2 ps-m-2 hover:ps-bg-gray-700 focus:ps-outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,23 +55,23 @@
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        class="w-6 h-6"
+        class="ps-w-6 ps-h-6"
       >
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
       </svg>
     </button>
 
     <div
-      class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2"
+      class="ps-absolute ps-bottom-0 ps-left-1/2 ps-transform ps--translate-x-1/2 ps-flex ps-space-x-2"
     >
       <span
         v-for="(product, index) in products"
         :key="index"
         :class="{
-          'bg-gray-200': index === currentIndex,
-          'bg-gray-400': index !== currentIndex,
+          'ps-bg-gray-200': index === currentIndex,
+          'ps-bg-gray-400': index !== currentIndex,
         }"
-        class="h-3 w-3 rounded-full cursor-pointer"
+        class="ps-h-3 ps-w-3 ps-rounded-full ps-cursor-pointer"
         @click="goToSlide(index)"
       ></span>
     </div>
@@ -125,3 +125,9 @@ export default {
   },
 };
 </script>
+
+<style>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</style>

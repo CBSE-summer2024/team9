@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./index.css";
 
 interface Product {
   id: number;
@@ -15,19 +16,19 @@ interface Product {
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white">
+    <div className="pg-p-4 border pg-rounded-lg pg-shadow-md pg-bg-white">
       <img
         src={product.image}
         alt={product.title}
-        className="w-full h-48 object-cover rounded-lg mb-4"
+        className="pg-w-full pg-h-48 pg-object-cover pg-rounded-lg pg-mb-4"
       />
-      <h2 className="text-lg font-semibold mb-2 line-clamp-1 text-primary-500">
+      <h2 className="pg-text-lg pg-font-semibold pg-mb-2 pg-line-clamp-1 pg-text-primary-500">
         {product.title}
       </h2>
-      <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+      <p className="pg-text-sm pg-text-gray-600 pg-mb-2 pg-line-clamp-2">
         {product.description}
       </p>
-      <p className="text-lg font-bold  text-primary-800">
+      <p className="pg-text-lg pg-font-bold  pg-text-primary-800">
         ${product.price.toFixed(2)}
       </p>
     </div>
@@ -69,14 +70,14 @@ const Index = () => {
   }, [products, orderBy]);
 
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex flex-wrap gap-2 mb-4">
+    <div className="pg-p-4">
+      <div className="pg-flex pg-justify-between pg-items-center pg-mb-4">
+        <div className="pg-flex pg-flex-wrap pg-gap-2 pg-mb-4">
           {categories.map((category) => (
             <span
               key={category}
-              className={`bg-gray-200 px-2 py-1 rounded-lg cursor-pointer ${
-                selectedCategory === category ? "bg-primary-400" : ""
+              className={`pg-bg-gray-200 pg-px-2 pg-py-1 pg-rounded-lg pg-cursor-pointer ${
+                selectedCategory === category ? "pg-bg-primary-400" : ""
               } `}
               onClick={() => {
                 setSelectedCategory(category);
@@ -90,8 +91,8 @@ const Index = () => {
           ))}
 
           <span
-            className={`bg-gray-200 px-2 py-1 rounded-lg cursor-pointer ${
-              selectedCategory === null ? "bg-primary-400" : ""
+            className={`pg-bg-gray-200 pg-px-2 pg-py-1 pg-rounded-lg pg-cursor-pointer ${
+              selectedCategory === null ? "pg-bg-primary-400" : ""
             } `}
             onClick={() => {
               setSelectedCategory(null);
@@ -102,12 +103,12 @@ const Index = () => {
           </span>
         </div>
         <div>
-          <label htmlFor="orderBy" className="mr-2">
+          <label htmlFor="orderBy" className="pg-mr-2">
             Order By
           </label>
           <select
             id="orderBy"
-            className="border rounded-lg p-2"
+            className="pg-border pg-rounded-lg pg-p-2"
             onChange={(e) => {
               const [key, order] = e.target.value.split("-");
               setOrderBy([key, order]);
@@ -122,7 +123,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="pg-grid pg-grid-cols-1 sm:pg-grid-cols-2 md:pg-grid-cols-3 lg:pg-grid-cols-4 pg-gap-4">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
