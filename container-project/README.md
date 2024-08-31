@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Container Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a container project that contains all the other microfrontends.
 
-Currently, two official plugins are available:
+## How we will do it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Create a React project
+2. Create a Container component for Svelte and Vue
+3. Install module federation plugin
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install @originjs/vite-plugin-federation
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+4. Import the remote components
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```javascript
+import { defineConfig } from "vite";
+import federation from "@originjs/vite-plugin-federation";
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+export default defineConfig({
+  plugins: [
+    react(),
+    federation({
+      remotes: {
+        ReactApp: "http://localhost:5001/assets/remoteEntry.js",
+        VueApp: "http://localhost:5002/assets/remoteEntry.js",
+        SvelteApp: "http://localhost:5003/assets/remoteEntry.js",
+      },
+      shared: ["react", "react-dom", "vue", "svelte"],
+    }),
+  ],
+});
 ```
+
+5. run the project
+
+```bash
+npm run dev
+```
+
+## Screenshots
+
+![Container](../screenshots/mainPage.png)
+![Container](../screenshots/productGrid.png)
