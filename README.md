@@ -6,9 +6,9 @@ Our task to create 3 different microfrontends from [Mart](mart.ps) website, with
 
 ## Microfrontend
 
-- [React](./react) Product Grid and Sorting/Filtration
-- [Vue](./vue) Product Slider
-- [Svelte](./svelte) Trusted Business
+- [React](./product-grid) Product Grid and Sorting/Filtration
+- [Vue](./product-slider) Product Slider
+- [Svelte](./trusted-business) Trusted Business
 
 ## Perquisites
 
