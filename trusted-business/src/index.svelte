@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-
   interface Product {
     id: number;
     title: string;
@@ -8,9 +6,13 @@
   }
 
   let products: Product[] = [];
-  let isPaused = false;
+  let fetchData = true;
 
-  onMount(async () => {
+  $: if (fetchData) {
+    fetchProducts();
+  }
+
+  async function fetchProducts() {
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data: Product[] = await response.json();
@@ -21,30 +23,38 @@
       }));
     } catch (error) {
       console.error("Failed to fetch products:", error);
+    } finally {
+      fetchData = false;
     }
-  });
+  }
 
   function togglePause() {
     isPaused = !isPaused;
   }
+
+  let isPaused = false;
 </script>
 
 <div class="scrolling-list-wrapper">
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
-    class="gap-4 scrolling-list {isPaused ? 'paused' : ''}"
+    class="tb-gap-4 scrolling-list"
+    class:paused={isPaused}
     on:mouseenter={togglePause}
     on:mouseleave={togglePause}
   >
     {#each [...products, ...products, ...products] as product}
       <div
-        class="flex-shrink-0 w-48 bg-gray-100 p-4 rounded-lg shadow-md text-center"
+        class="tb-flex-shrink-0 tb-w-48 tb-bg-gray-100 tb-p-4 tb-rounded-lg tb-shadow-md tb-text-center"
       >
         <img
           src={product.image}
           alt={product.title}
-          class="w-32 h-32 object-cover mx-auto rounded-md"
+          class="tb-w-32 tb-h-32 tb-object-cover tb-mx-auto tb-rounded-md"
         />
-        <h2 class="mt-2 text-primary-700 text-sm font-semibold truncate">
+        <h2
+          class="tb-mt-2 tb-text-primary-700 tb-text-sm tb-font-semibold tb-truncate"
+        >
           {product.title}
         </h2>
       </div>
@@ -52,18 +62,23 @@
   </div>
 </div>
 
-<style>
+<style scoped>
+  @tailwind utilities;
+  @tailwind components;
+  @tailwind base;
   .scrolling-list-wrapper {
     overflow: hidden;
     position: relative;
     width: 100%;
   }
+
   .scrolling-list {
     display: flex;
     animation: scroll 30s linear infinite;
     white-space: nowrap;
     padding: 1rem;
   }
+
   .scrolling-list.paused {
     animation-play-state: paused;
   }
