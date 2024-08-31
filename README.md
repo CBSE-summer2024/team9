@@ -71,6 +71,10 @@ npm run start:all
 ![Main Page](./screenshots/mainPage.png)
 ![Product Grid](./screenshots/productGrid.png)
 
+## Demo Video
+
+[![Demo Video](./screenshots/video1121247955.mp4)]
+
 ## Deployment
 
 unfortunately, we didn't deploy the project yet, but you can run it locally by following the above steps, demonstrate how will run the project on the server.
