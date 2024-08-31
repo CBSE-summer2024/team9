@@ -1,0 +1,15 @@
+{
+  "name": "team9",
+  "version": "1.0.0",
+  "description": "In this repository, we will explore the microfrontend technology and how to implement it in a multiple frontend frameworks like React, Vue, and Svelte.",
+  "main": "index.js",
+  "scripts": {
+    "start:all": "concurrently \"npm run bundle --prefix ./product-grid\" \"npm run bundle --prefix ./product-slider\" \"npm run bundle --prefix ./trusted-business\" \"npm run dev --prefix ./container-project\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
