@@ -73,7 +73,7 @@ npm run start:all
 
 ## Demo Video
 
-[![Demo Video](./screenshots/video1121247955.mp4)]
+[Demo Video](https://drive.google.com/file/d/1dVnp_qDMgQMPyXGAzk4K49ONdRC_7laX/view?usp=sharing)
 
 ## Deployment
 
