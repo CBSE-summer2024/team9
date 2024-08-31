@@ -66,6 +66,10 @@ npm run start:all
 
 4. Open your browser and go to [http://localhost:8080](http://localhost:8080)
 
+## General Architecture
+![image](https://github.com/user-attachments/assets/d766c3f6-ba67-4e47-8858-3e4f2ce266f8)
+
+
 ## Screenshots
 
 ![Main Page](./screenshots/mainPage.png)
